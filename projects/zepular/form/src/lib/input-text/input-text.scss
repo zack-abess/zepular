@@ -1,0 +1,68 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.zep-input-text {
+  display: flex;
+  flex-direction: column;
+  gap: v.$zep-spacing-1;
+  font-family: var(--zep-font-family-base, v.$zep-font-family-base);
+
+  &__label {
+    font-size: v.$zep-font-size-sm;
+    font-weight: v.$zep-font-weight-medium;
+    color: var(--zep-color-text, v.$zep-color-gray-900);
+  }
+
+  &__input {
+    appearance: none;
+    width: 100%;
+    padding: v.$zep-spacing-2 v.$zep-spacing-3;
+    font-size: v.$zep-font-size-base;
+    color: var(--zep-color-text, v.$zep-color-gray-900);
+    background-color: var(--zep-color-bg, v.$zep-color-white);
+    border: 1px solid var(--zep-color-border, v.$zep-color-gray-300);
+    border-radius: v.$zep-radius-md;
+    transition:
+      border-color v.$zep-transition-fast,
+      box-shadow v.$zep-transition-fast;
+
+    @include m.focus-ring();
+
+    &:hover:not(:disabled) {
+      border-color: v.$zep-color-gray-400;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      background-color: v.$zep-color-gray-100;
+    }
+  }
+
+  &__hint {
+    font-size: v.$zep-font-size-xs;
+    color: var(--zep-color-text-muted, v.$zep-color-gray-500);
+  }
+
+  &__error {
+    font-size: v.$zep-font-size-xs;
+    color: v.$zep-color-danger;
+  }
+
+  // --- Variantes ---
+  &--invalid {
+    .zep-input-text__input {
+      border-color: v.$zep-color-danger;
+
+      &:focus-visible {
+        outline-color: v.$zep-color-danger;
+      }
+    }
+  }
+
+  &--disabled {
+    .zep-input-text__label {
+      color: var(--zep-color-text-muted, v.$zep-color-gray-500);
+    }
+  }
+}

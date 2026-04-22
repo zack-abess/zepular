@@ -1,0 +1,43 @@
+// =============================================================
+// @zepular/styles — Theme (CSS custom properties)
+// =============================================================
+// Expose les tokens en CSS variables pour pouvoir basculer
+// facilement entre plusieurs thèmes (light/dark) au runtime.
+@use 'variables' as v;
+
+:root {
+  // Couleurs
+  --zep-color-primary:   #{v.$zep-color-primary};
+  --zep-color-secondary: #{v.$zep-color-secondary};
+  --zep-color-success:   #{v.$zep-color-success};
+  --zep-color-warning:   #{v.$zep-color-warning};
+  --zep-color-danger:    #{v.$zep-color-danger};
+  --zep-color-info:      #{v.$zep-color-info};
+
+  // Surfaces (light par défaut)
+  --zep-color-bg:      #{v.$zep-color-white};
+  --zep-color-surface: #{v.$zep-color-gray-50};
+  --zep-color-border:  #{v.$zep-color-gray-200};
+  --zep-color-text:    #{v.$zep-color-gray-900};
+  --zep-color-text-muted: #{v.$zep-color-gray-500};
+
+  // Typo
+  --zep-font-family-base: #{v.$zep-font-family-base};
+  --zep-font-size-base:   #{v.$zep-font-size-base};
+
+  // Radius / shadows
+  --zep-radius-md: #{v.$zep-radius-md};
+  --zep-radius-lg: #{v.$zep-radius-lg};
+  --zep-shadow-sm: #{v.$zep-shadow-sm};
+  --zep-shadow-md: #{v.$zep-shadow-md};
+  --zep-shadow-lg: #{v.$zep-shadow-lg};
+}
+
+// ---- Dark theme ----
+[data-theme='dark'] {
+  --zep-color-bg:      #{v.$zep-color-gray-900};
+  --zep-color-surface: #{v.$zep-color-gray-800};
+  --zep-color-border:  #{v.$zep-color-gray-700};
+  --zep-color-text:    #{v.$zep-color-gray-50};
+  --zep-color-text-muted: #{v.$zep-color-gray-400};
+}

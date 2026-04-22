@@ -1,0 +1,14 @@
+{
+  "name": "@zepular/form",
+  "version": "0.0.1",
+  "description": "Composants de formulaire pour Zepular (input, select, checkbox, etc.)",
+  "peerDependencies": {
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

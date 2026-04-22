@@ -1,0 +1,99 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "@zepular/button": ["./dist/zepular/button"],
+      "@zepular/control": ["./dist/zepular/control"],
+      "@zepular/data": ["./dist/zepular/data"],
+      "@zepular/file": ["./dist/zepular/file"],
+      "@zepular/form": ["./dist/zepular/form"],
+      "@zepular/menu": ["./dist/zepular/menu"],
+      "@zepular/message": ["./dist/zepular/message"],
+      "@zepular/overlay": ["./dist/zepular/overlay"],
+      "@zepular/panel": ["./dist/zepular/panel"],
+      "@zepular/styles": ["./dist/zepular/styles"]
+    },
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/zepular/styles/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/styles/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/control/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/control/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/message/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/message/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/form/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/form/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/button/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/button/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/menu/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/menu/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/file/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/file/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/overlay/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/overlay/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/panel/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/panel/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zepular/data/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zepular/data/tsconfig.spec.json"
+    }
+  ]
+}

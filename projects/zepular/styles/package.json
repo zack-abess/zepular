@@ -1,0 +1,13 @@
+{
+  "name": "@zepular/styles",
+  "version": "0.0.1",
+  "description": "Design tokens, SCSS variables, mixins et theme pour @zepular/*",
+  "peerDependencies": {
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,468 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>zepular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/default.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">zepular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>Zepular</h1>
+<blockquote>
+<p>Design system et bibliothèque de composants Angular pour les applications du <strong>Groupe ISM / DSI</strong>.</p>
+</blockquote>
+<p>Zepular est un monorepo Angular qui fournit un ensemble de <strong>10 librairies npm indépendantes</strong>, toutes scopées sous <code>@zepular/*</code>, conçues pour être installées à la carte selon les besoins de chaque application consommatrice.</p>
+<hr>
+<h2>Sommaire</h2>
+<ul>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#pr%C3%A9requis">Prérequis</a></li>
+<li><a href="#installation-c%C3%B4t%C3%A9-application-consommatrice">Installation</a></li>
+<li><a href="#utilisation-des-styles-partag%C3%A9s">Utilisation des styles partagés</a></li>
+<li><a href="#d%C3%A9veloppement">Développement</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#publication">Publication</a></li>
+<li><a href="#conventions">Conventions</a></li>
+<li><a href="#contribuer">Contribuer</a></li>
+<li><a href="#contributeurs">Contributeurs</a></li>
+<li><a href="#licence">Licence</a></li>
+</ul>
+<hr>
+<h2>Architecture</h2>
+<p>Zepular est structuré autour de 10 libs publiables indépendamment :</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Package</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@zepular/styles</code></td>
+<td>Tokens SCSS partagés : variables, mixins, theme (light/dark)</td>
+</tr>
+<tr>
+<td><code>@zepular/control</code></td>
+<td>Primitives d&#39;interaction bas niveau (focus, keyboard, a11y helpers)</td>
+</tr>
+<tr>
+<td><code>@zepular/overlay</code></td>
+<td>Système d&#39;overlays (backdrop, positionnement, z-index)</td>
+</tr>
+<tr>
+<td><code>@zepular/message</code></td>
+<td>Toasts, alerts, notifications</td>
+</tr>
+<tr>
+<td><code>@zepular/menu</code></td>
+<td>Menus contextuels, dropdowns</td>
+</tr>
+<tr>
+<td><code>@zepular/panel</code></td>
+<td>Panels latéraux, accordions, drawers</td>
+</tr>
+<tr>
+<td><code>@zepular/form</code></td>
+<td>Input, select, checkbox, radio, textarea, validation</td>
+</tr>
+<tr>
+<td><code>@zepular/button</code></td>
+<td>Boutons (primary, secondary, icon, toggle…)</td>
+</tr>
+<tr>
+<td><code>@zepular/file</code></td>
+<td>Upload, file picker, preview</td>
+</tr>
+<tr>
+<td><code>@zepular/data</code></td>
+<td>Table, liste, pagination, tri, filtres</td>
+</tr>
+</tbody>
+</table>
+<h3>Graphe de dépendances</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">styles        (tokens, aucune dépendance)
+  │
+  ├── control    ──────────┬── form   ──── file
+  │                        ├── button ────┘
+  │                        └── data
+  │
+  └── overlay    ──────────┬── message
+                           ├── menu
+                           └── panel</code></pre></div><p>Chaque lib déclare ses dépendances inter-libs via ses <strong><code>peerDependencies</code></strong> dans <code>projects/zepular/&lt;lib&gt;/package.json</code>.</p>
+<h3>Structure du repo</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">zepular/
+├── angular.json                 Config workspace (10 projets libs)
+├── tsconfig.json                Path mappings &#64;zepular/* → dist/zepular/*
+├── package.json                 Scripts build/publish
+├── projects/
+│   └── zepular/
+│       ├── styles/              &#64;zepular/styles
+│       │   ├── ng-package.json    (assets: scss/**/*.scss)
+│       │   ├── package.json
+│       │   ├── scss/              ← tokens, mixins, theme
+│       │   └── src/public-api.ts
+│       ├── control/             &#64;zepular/control
+│       ├── overlay/             &#64;zepular/overlay
+│       ├── message/             &#64;zepular/message
+│       ├── menu/                &#64;zepular/menu
+│       ├── panel/               &#64;zepular/panel
+│       ├── form/                &#64;zepular/form
+│       ├── button/              &#64;zepular/button
+│       ├── file/                &#64;zepular/file
+│       └── data/                &#64;zepular/data
+└── dist/
+    └── zepular/                 ← sortie des builds, prête à publier</code></pre></div><hr>
+<h2>Prérequis</h2>
+<ul>
+<li><strong>Node.js</strong> <code>&gt;=22.0.0</code></li>
+<li><strong>npm</strong> <code>&gt;=10.9.0</code></li>
+<li><strong>Angular CLI</strong> <code>^21.2.8</code> (fourni via <code>devDependencies</code>)</li>
+</ul>
+<hr>
+<h2>Installation (côté application consommatrice)</h2>
+<p>Les apps consomment chaque lib comme un package npm standard :</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install &#64;zepular/styles &#64;zepular/form &#64;zepular/button</code></pre></div><p>Puis dans le code :</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import { InputText } from &#39;&#64;zepular/form&#39;;
+import { Button }    from &#39;&#64;zepular/button&#39;;
+
+&#64;Component({
+  imports: [InputText, Button],
+  template: `
+    &lt;zep-input-text [(value)]=&quot;email&quot; label=&quot;Email&quot; type=&quot;email&quot; /&gt;
+    &lt;zep-button&gt;Valider&lt;/zep-button&gt;
+  `,
+})
+export class LoginForm { email = &#39;&#39;; }</code></pre></div><hr>
+<h2>Utilisation des styles partagés</h2>
+<p><code>@zepular/styles</code> expose :</p>
+<ol>
+<li><strong>Des variables SCSS</strong> (<code>$zep-color-primary</code>, <code>$zep-spacing-4</code>, etc.) — à <code>@use</code> dans vos SCSS</li>
+<li><strong>Des mixins</strong> (<code>focus-ring</code>, <code>flex-center</code>, <code>elevation</code>, etc.)</li>
+<li><strong>Un theme en CSS custom properties</strong> (<code>--zep-color-primary</code>, <code>--zep-color-bg</code>, etc.) — pour le runtime theming (light/dark)</li>
+</ol>
+<h3>Dans une app consommatrice</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-scss">// styles.scss
+&#64;use &#39;&#64;zepular/styles/scss/theme&#39;;       // injecte les :root { --zep-* }
+&#64;use &#39;&#64;zepular/styles/scss/variables&#39; as v;
+&#64;use &#39;&#64;zepular/styles/scss/mixins&#39; as m;
+
+.my-card {
+  background: var(--zep-color-surface);
+  padding: v.$zep-spacing-4;
+  &#64;include m.elevation(2);
+}</code></pre></div><h3>Dans une lib Zepular</h3>
+<p>Les 9 autres libs ont <code>styleIncludePaths: [&quot;../styles/scss&quot;]</code> dans leur <code>ng-package.json</code>, donc depuis leurs composants :</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-scss">&#64;use &#39;variables&#39; as v;
+&#64;use &#39;mixins&#39; as m;</code></pre></div><h3>Dark mode</h3>
+<p>Ajoutez <code>data-theme=&quot;dark&quot;</code> sur un ancêtre (<code>&lt;html&gt;</code> ou <code>&lt;body&gt;</code>) pour basculer automatiquement sur les couleurs sombres.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;html data-theme=&quot;dark&quot;&gt;</code></pre></div><hr>
+<h2>Développement</h2>
+<h3>Installation du workspace</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git clone &lt;url-du-repo&gt; zepular
+cd zepular
+npm install</code></pre></div><h3>Travailler sur une lib en mode watch</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng build &#64;zepular/form --watch --configuration development</code></pre></div><p>Le path mapping TypeScript (<code>tsconfig.json</code>) pointe automatiquement vers <code>dist/zepular/&lt;lib&gt;</code>, donc les autres libs et les apps consommatrices (en workspace) voient les changements immédiatement.</p>
+<h3>Générer un nouveau composant</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng generate component mon-composant --project=&#64;zepular/form</code></pre></div><p>SCSS est configuré par défaut (voir <code>angular.json</code> → <code>schematics</code>).</p>
+<h3>Ajouter une lib</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng generate library &#64;zepular/nouvelle-lib --prefix=zep</code></pre></div><p>Puis :</p>
+<ol>
+<li>Ajouter <code>styleIncludePaths: [&quot;../styles/scss&quot;]</code> dans son <code>ng-package.json</code></li>
+<li>Ajouter le script <code>build:&lt;nom&gt;</code> dans le <code>package.json</code> racine</li>
+<li>Insérer le nom dans <code>build:all</code> dans le bon ordre topologique</li>
+</ol>
+<hr>
+<h2>Build</h2>
+<h3>Une lib</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run build:form        # build &#64;zepular/form</code></pre></div><h3>Toutes les libs (ordre topologique)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run build:all</code></pre></div><p>L&#39;ordre respecte le graphe de dépendances : <code>styles → control → overlay → message/menu/panel → form/button → file → data</code>.</p>
+<h3>Clean</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run clean             # rm -rf dist/</code></pre></div><hr>
+<h2>Tests</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">ng test &#64;zepular/form     # tests d&#39;une lib
+ng test                   # tous les tests</code></pre></div><p>Le test runner est <strong>Vitest</strong> (jsdom).</p>
+<hr>
+<h2>Publication</h2>
+<h3>Authentification</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm login                 # compte npmjs.com avec accès au scope &#64;zepular</code></pre></div><h3>Publier une version</h3>
+<ol>
+<li><strong>Bump de version</strong> dans le <code>projects/zepular/&lt;lib&gt;/package.json</code> concerné (ou via changesets)</li>
+<li><strong>Build</strong></li>
+<li><strong>Publish</strong> depuis le dossier <code>dist/</code></li>
+</ol>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run build:all
+npm run publish:dry       # dry-run pour vérifier ce qui partira
+npm run publish:all       # publication réelle</code></pre></div><blockquote>
+<p><strong>Note</strong> : le premier publish d&#39;un package scopé nécessite <code>--access public</code> (déjà intégré dans les scripts).</p>
+</blockquote>
+<h3>Outils recommandés</h3>
+<ul>
+<li><strong><a href="https://github.com/changesets/changesets">Changesets</a></strong> pour gérer le versioning sémantique et les changelogs de chacune des 10 libs :<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm install -D &#64;changesets/cli
+npx changeset init</code></pre></div></li>
+</ul>
+<hr>
+<h2>Conventions</h2>
+<h3>Nommage</h3>
+<ul>
+<li><strong>Sélecteurs</strong> : préfixe <code>zep-</code> (ex. <code>zep-input-text</code>, <code>zep-button</code>)</li>
+<li><strong>Classes CSS</strong> : BEM-like, préfixe <code>zep-</code> (ex. <code>.zep-input-text__label</code>, <code>.zep-input-text--invalid</code>)</li>
+<li><strong>Fichiers composants</strong> : kebab-case (ex. <code>input-text.ts</code>)</li>
+<li><strong>Noms de classes TS</strong> : PascalCase sans suffixe <code>Component</code> (ex. <code>InputText</code>)</li>
+</ul>
+<h3>API des composants</h3>
+<ul>
+<li><strong>Standalone only</strong> — pas de NgModules</li>
+<li><strong>Signals</strong> : préférer <code>input()</code>, <code>model()</code>, <code>output()</code>, <code>computed()</code> à <code>@Input</code>/<code>@Output</code></li>
+<li><strong>ChangeDetection.OnPush</strong> par défaut</li>
+<li><strong>ViewEncapsulation.None</strong> pour les composants dont les styles doivent être surchargeables par les apps</li>
+<li><strong>A11y first</strong> — tous les composants doivent respecter WAI-ARIA</li>
+</ul>
+<h3>Commits</h3>
+<p>Format <a href="https://www.conventionalcommits.org/">Conventional Commits</a> :</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">feat(form): ajouter le composant select
+fix(button): corriger le focus-ring en dark mode
+docs(readme): mettre à jour l&#39;architecture
+chore(deps): bump ng-packagr to 21.3.0</code></pre></div><hr>
+<h2>Contribuer</h2>
+<ol>
+<li><strong>Fork</strong> et clone du repo</li>
+<li>Créer une branche : <code>git checkout -b feat/ma-feature</code></li>
+<li>Développer, tester, linter</li>
+<li>Commit selon la convention ci-dessus</li>
+<li>Ouvrir une <strong>Pull Request</strong> vers <code>main</code></li>
+<li>Au moins un review approuvé avant merge</li>
+</ol>
+<h3>Checklist avant PR</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Le code builde : <code>npm run build:all</code></li>
+<li><input disabled="" type="checkbox"> Les tests passent : <code>ng test</code></li>
+<li><input disabled="" type="checkbox"> Les nouveaux composants ont des tests</li>
+<li><input disabled="" type="checkbox"> La doc est à jour (README de la lib si applicable)</li>
+<li><input disabled="" type="checkbox"> Pas de <code>console.log</code> oublié</li>
+<li><input disabled="" type="checkbox"> Respect des conventions de nommage</li>
+</ul>
+<hr>
+<h2>Contributeurs</h2>
+<p>Merci aux personnes qui ont contribué à Zepular :</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Nom</th>
+<th>Rôle</th>
+<th>Contact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zack</strong></td>
+<td>Mainteneur principal</td>
+<td><a href="mailto:zackabess@gmail.com">zackabess@gmail.com</a></td>
+</tr>
+<tr>
+<td><em>À compléter</em></td>
+<td><em>À compléter</em></td>
+<td><em>À compléter</em></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Pour rejoindre la liste, contacte le mainteneur ou ouvre une PR qui modifie ce tableau.</p>
+</blockquote>
+<h3>Remerciements</h3>
+<ul>
+<li><a href="https://angular.dev/">Angular</a> — le framework</li>
+<li><a href="https://github.com/ng-packagr/ng-packagr">ng-packagr</a> — le builder de librairies</li>
+<li>L&#39;équipe <strong>Groupe ISM / DSI</strong> pour le cadrage et les retours</li>
+</ul>
+<hr>
+<h2>Licence</h2>
+<p>Copyright © 2026 Groupe ISM / DSI — Tous droits réservés.</p>
+<p><em>(À adapter selon la politique de publication : propriétaire interne, MIT, Apache-2.0, etc.)</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

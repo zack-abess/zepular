@@ -1,0 +1,28 @@
+@if (label()) {
+  <label class="zep-input-text__label" [for]="inputId()">
+    {{ label() }}
+  </label>
+}
+
+<input
+  class="zep-input-text__input"
+  [id]="inputId()"
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [attr.aria-invalid]="invalid() || null"
+  [attr.aria-describedby]="describedBy()"
+  [(ngModel)]="value"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+/>
+
+@if (invalid() && errorMessage()) {
+  <span class="zep-input-text__error" [id]="inputId() + '-error'" role="alert">
+    {{ errorMessage() }}
+  </span>
+} @else if (hint()) {
+  <span class="zep-input-text__hint" [id]="inputId() + '-hint'">
+    {{ hint() }}
+  </span>
+}

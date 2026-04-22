@@ -1,0 +1,10 @@
+// =============================================================
+// @zepular/styles — Point d'entrée unique
+// =============================================================
+// Permet aux consommateurs de faire :
+//   @use '@zepular/styles/scss' as zep;
+// au lieu d'importer chaque partie individuellement.
+
+@forward 'variables';
+@forward 'mixins';
+@forward 'theme';

@@ -1,0 +1,280 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": false
+  },
+  "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "@zepular/styles": {
+      "projectType": "library",
+      "root": "projects/zepular/styles",
+      "sourceRoot": "projects/zepular/styles/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/styles/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/styles/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/styles/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/message": {
+      "projectType": "library",
+      "root": "projects/zepular/message",
+      "sourceRoot": "projects/zepular/message/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/message/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/message/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/message/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/form": {
+      "projectType": "library",
+      "root": "projects/zepular/form",
+      "sourceRoot": "projects/zepular/form/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/form/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/form/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/form/tsconfig.spec.json"
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/zepular/form/.storybook",
+            "browserTarget": "@zepular/form:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/zepular/form"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/zepular/form/.storybook",
+            "browserTarget": "@zepular/form:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/zepular/form"
+            ],
+            "outputDir": "dist/storybook/@zepular/form"
+          }
+        }
+      }
+    },
+    "@zepular/button": {
+      "projectType": "library",
+      "root": "projects/zepular/button",
+      "sourceRoot": "projects/zepular/button/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/button/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/button/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/button/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/menu": {
+      "projectType": "library",
+      "root": "projects/zepular/menu",
+      "sourceRoot": "projects/zepular/menu/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/menu/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/menu/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/menu/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/file": {
+      "projectType": "library",
+      "root": "projects/zepular/file",
+      "sourceRoot": "projects/zepular/file/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/file/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/file/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/file/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/overlay": {
+      "projectType": "library",
+      "root": "projects/zepular/overlay",
+      "sourceRoot": "projects/zepular/overlay/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/overlay/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/overlay/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/overlay/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/panel": {
+      "projectType": "library",
+      "root": "projects/zepular/panel",
+      "sourceRoot": "projects/zepular/panel/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/panel/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/panel/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/panel/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "@zepular/data": {
+      "projectType": "library",
+      "root": "projects/zepular/data",
+      "sourceRoot": "projects/zepular/data/src",
+      "prefix": "zep",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zepular/data/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zepular/data/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/zepular/data/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  }
+}
